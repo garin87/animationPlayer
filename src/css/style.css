@@ -55,7 +55,7 @@ html {
     justify-content: flex-start;
     flex-direction: column; 
     width: 150px;
-    max-height: 500px;
+    max-height: 450px;
     margin-left: 5rem;
     overflow-y: scroll;
     scroll-behavior: smooth;
