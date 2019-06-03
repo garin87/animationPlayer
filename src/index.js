@@ -9,6 +9,7 @@ const clickX = [];
 const clickY = [];
 const clickDrag = [];
 let paint;
+
 // //////////////////////// pencil tool
 canvas.addEventListener('mouseup', () => {
   paint = false;
@@ -31,7 +32,7 @@ function redraw() {
   context.lineJoin = 'round';
   context.lineWidth = 5;
 
-  for (let i = 0; i < clickX.length; i += 1) {
+  for (let i = 0; i < clickX.length; i++) {
     context.beginPath();
     if (clickDrag[i] && i) {
       context.moveTo(clickX[i - 1], clickY[i - 1]);
@@ -44,7 +45,7 @@ function redraw() {
   }
 }
 
-canvas.addEventListener('mousedown', (e) => {
+canvas.addEventListener('mousedown', function (e) {
   const mouseX = e.pageX - this.offsetLeft;
   const mouseY = e.pageY - this.offsetTop;
 
@@ -53,7 +54,7 @@ canvas.addEventListener('mousedown', (e) => {
   redraw();
 });
 
-canvas.addEventListener('mousemove', (e) => {
+canvas.addEventListener('mousemove', function (e) {
   if (paint) {
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
     redraw();
@@ -73,6 +74,7 @@ document.getElementById('clearCanvas').addEventListener('click', clearMainCanvas
 // ///////////////////////////////////add new frame
 const setIsFrames = {};
 let itemCanvas = 1;
+let countFrame = 1;
 
 function saveFrame(clickX, clickY, clickDrag) {
   const tempClickX = Array.from(clickX);
@@ -90,15 +92,6 @@ function saveFrame(clickX, clickY, clickDrag) {
   setIsFrames[`${itemCanvas++}`] = paramFrame;
 }
 
-let countFrame = 1;
-
-document.getElementById('newframe').addEventListener('click', () => {
-  countFrame += 1;
-  saveFrame(clickX, clickY, clickDrag);
-  clearMainCanvas();
-  addNewFrame(countFrame);
-});
-// //////////////////////// end add new frame
 // ////////////////////////////// handle animation
 function renderFrames(clickX, clickY, clickDrag) {
   contextAnimation.clearRect(0, 0, context.canvas.width, context.canvas.height);
@@ -138,15 +131,16 @@ document.getElementById('start').addEventListener('click', () => {
   animatFrames(setIsFrames);
 });
 
+
 // /////////////////////////////////////// add new div frame
 function addNewFrame(countFrame) {
   const frame = `
-   <div class="frame" id="frame${countFrame}">
-        <canvas id="canvasFrame${countFrame}" width="100" height="100"></canvas>
-        <button id="deleteFrame${countFrame}" class="deleteFrame">Delete</button>
-        <button id="copyFrame${countFrame}" class="copyFrame">Copy</button>
-   </div>
-   `;
+     <div class="frame" id="frame${countFrame}">
+          <canvas id="canvasFrame${countFrame}" width="100" height="100"></canvas>
+          <button id="deleteFrame${countFrame}" class="deleteFrame">Delete</button>
+          <button id="copyFrame${countFrame}" class="copyFrame">Copy</button>
+     </div>
+     `;
 
   document.getElementById('wrapperListFrame').insertAdjacentHTML('beforeend', frame);
 }
@@ -191,7 +185,8 @@ document.getElementById('listFrames').addEventListener('click', copyFrame);
 // /////////////////////////////////  screen copy from base canvas min canvas
 function copyScreenCanvas(event) {
   const { target } = event;
-  const id = event.target.substr(11);
+  const { id } = event.target;
+  const strId = id.substr(11);
   function resizeCanvasImg(image, canvasId) {
     const canvasMin = document.getElementById(`canvasFrame${canvasId}`);
     const contexMin = canvasMin.getContext('2d');
@@ -199,18 +194,28 @@ function copyScreenCanvas(event) {
     contexMin.drawImage(tempImg, 0, 0, 100, 100);
     tempImg = 0;
   }
-  function renderScreenshot(id) {
+  function renderScreenshot(strId) {
     const screenShot = document.getElementById('canvas');
-    resizeCanvasImg(screenShot, id);
+    resizeCanvasImg(screenShot, strId);
   }
-  if (target === document.getElementById(`canvasFrame${id}`)) {
-    canvas.addEventListener('mouseup', renderScreenshot(id));
+
+  if (target === document.getElementById(`canvasFrame${strId}`)) {
+    canvas.addEventListener('mouseup', renderScreenshot(strId));
   }
+
   if (target === document.getElementById('newframe')) {
     const temp = Object.keys(setIsFrames).length;
     canvas.addEventListener('mouseup', renderScreenshot(temp + 1));
   }
 }
 
+
 document.getElementById('listFrames').addEventListener('click', copyScreenCanvas);
 document.getElementById('newframe').addEventListener('click', copyScreenCanvas);
+
+document.getElementById('newframe').addEventListener('click', () => {
+  countFrame += 1;
+  saveFrame(clickX, clickY, clickDrag);
+  clearMainCanvas();
+  addNewFrame(countFrame);
+});
