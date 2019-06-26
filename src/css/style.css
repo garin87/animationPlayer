@@ -54,7 +54,7 @@ html {
     display: flex;
     justify-content: flex-start;
     flex-direction: column; 
-    width: 150px;
+    width: 200px;
     max-height: 450px;
     margin-left: 5rem;
     overflow-y: scroll;
@@ -101,4 +101,28 @@ html {
   }
   .canva-player{
     background: #ebeaea;
+  }
+  .active{
+    border: 4px solid blue;
+  }
+  
+  .min-canvas{
+    pointer-events: none;
+  }
+  /*//////////////////*/
+  .slider-wrapper {
+ 
+    width: 20px;
+    height: 150px;
+    padding: 0;
+  }
+  .slider-wrapper input {
+    width: 150px;
+    height: 20px;
+    margin: 0;
+    /* transform-origin: 75px 75px;
+    transform: rotate(-90deg); */
+  }
+  output{
+    font-size: 1.8rem;
   }
