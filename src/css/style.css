@@ -1,0 +1,128 @@
+html {
+    background: #bdd8e8;
+    font-family: sans-serif;
+    font-size: 10px;
+  }
+  
+  *{
+    box-sizing: border-box;
+  }
+  
+  a, ul{
+    text-decoration: none;
+    list-style: none;
+  }
+  
+  div, h2, p, figure {
+    margin: 0;
+  }
+  button{
+      cursor: pointer;
+  }
+  body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+  }
+
+  .wrapper{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row; 
+    width: 1200px;
+  }
+  .list-tools{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column; 
+    width: 50px;
+    margin: 1rem;
+    padding: 0.5rem;
+  }
+
+  .pen-tool{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 3rem;
+      height: 3rem;
+      background-color: #be7937;
+  }
+
+  .wrapper-list-frame{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column; 
+    width: 200px;
+    max-height: 450px;
+    margin-left: 5rem;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+
+  .frame{
+      margin: 1rem;
+      padding: 0.5rem;
+      border: 1px solid brown;
+  }
+  .wrapper-canvas{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding: 0.5rem;
+    border: 1px solid brown;
+    width: 400px;
+    margin-left: 5rem;
+  }
+  .wrapper-animation-player{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 0.5rem;
+    border: 1px solid brown;
+    width: 400px;
+    margin-left: 5rem;
+  }
+  .pure-canvas{
+      margin-top: 1rem;
+      width: 15rem;
+  }
+  .start-animation{
+    width: 150px;
+    margin-top: 1rem;
+  }
+  .mainCanvas{
+    background: #ebeaea;
+  }
+  .canva-player{
+    background: #ebeaea;
+  }
+  .active{
+    border: 4px solid blue;
+  }
+  
+  .min-canvas{
+    pointer-events: none;
+  }
+  /*//////////////////*/
+  .slider-wrapper {
+ 
+    width: 20px;
+    height: 150px;
+    padding: 0;
+  }
+  .slider-wrapper input {
+    width: 150px;
+    height: 20px;
+    margin: 0;
+    /* transform-origin: 75px 75px;
+    transform: rotate(-90deg); */
+  }
+  output{
+    font-size: 1.8rem;
+  }

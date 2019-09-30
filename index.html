@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>animation-player</title>
+	<link rel="stylesheet" type="text/css" href="./src/css/style.css">
+</head>
+<body>
+<header class="wrapper-header">
+    <div class="header-title">
+        <h1>Animation player</h1>
+    </div>
+</header>
+<div class="wrapper">
+       <div class="list-tools">
+       </div>
+       <div class="wrapper-list-frame"  id="listFrames">
+           <button id="newframe">Add new Frame</button>
+           <div id="wrapperListFrame">
+              <!-- <div class="frame active" data-minframe="1" id="frame1" >
+                <canvas data-mincanvas-number="1" id="canvasFrame1" class="min-canvas" width="100" height="100"></canvas>
+                <button data-mincanvas-delete="1" id="deleteFrame1" class="deleteFrame">Delete</button>
+                <button data-mincanvas-copy="1" id="copyFrame1" class="copyFrame">Copy</button>
+               </div> -->
+            </div> 
+       </div>
+       <div class="wrapper-canvas">
+             <canvas id="canvas" class="mainCanvas" width="300" height="300">
+             </canvas>
+             <button id="clearCanvas" class="pure-canvas">Clear</button>
+       </div>
+       <div class="wrapper-animation-player">
+            <canvas id="canvasPlayer" class="canva-player" width="300" height="300"> </canvas>
+            <button id="fullScreenAnimation" class="full-Screen-Animation">Full Screen Animation</button>
+            <!-- <input type="range" name="rangeInput" min="1" max="24" step="1" onchange="updateTextInput(this.value);">
+            <input type="text" id="textInput" value="" > -->
+            <form name="registrationForm">
+                <input type="range" name="fpsInputName" id="fpsInputId" value="1" min="1" max="24" oninput="fpsOutputId.value = fpsInputId.value">
+                <output name="fpsOutputName" id="fpsOutputId">1</output>
+            </form>
+       </div>
+       
+       
+</div>
+<script src="./src/index.js"></script>
+</body>
+</html>
